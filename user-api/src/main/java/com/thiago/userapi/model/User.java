@@ -7,7 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import com.thiago.userapi.dto.UserDTO;
+import com.thiago.shoppingclient.dto.UserDTO;
 
 @Entity
 public class User {

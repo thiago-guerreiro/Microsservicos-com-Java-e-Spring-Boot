@@ -8,7 +8,7 @@ import com.thiago.userapi.model.User;
 
 public interface UserRepository extends JpaRepository<User, Long> {
 
-	User findByCpfAndKey(String cpf);
+	User findByCpf(String cpf);
 
 	List<User> queryByNomeLike(String name);
 

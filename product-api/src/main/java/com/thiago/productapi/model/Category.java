@@ -5,7 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import com.thiago.productapi.dto.CategoryDTO;
+import com.thiago.shoppingclient.dto.CategoryDTO;
 
 @Entity(name = "category")
 public class Category {

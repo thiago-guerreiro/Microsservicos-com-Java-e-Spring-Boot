@@ -13,7 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 
-import com.thiago.shoppingapi.dto.ShopDTO;
+import com.thiago.shoppingclient.dto.ShopDTO;
 
 @Entity(name = "shop")
 public class Shop {

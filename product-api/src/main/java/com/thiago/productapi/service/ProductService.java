@@ -7,10 +7,11 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.thiago.productapi.dto.ProductDTO;
+import com.thiago.productapi.converter.DTOConverter;
 import com.thiago.productapi.model.Product;
 import com.thiago.productapi.repository.CategoryRepository;
 import com.thiago.productapi.repository.ProductRepository;
+import com.thiago.shoppingclient.dto.ProductDTO;
 
 @Service
 public class ProductService {
@@ -23,18 +24,18 @@ public class ProductService {
 
 	public List<ProductDTO> getAll() {
 		List<Product> products = productRepository.findAll();
-		return products.stream().map(ProductDTO::convert).collect(Collectors.toList());
+		return products.stream().map(DTOConverter::convert).collect(Collectors.toList());
 	}
 
 	public List<ProductDTO> getProductByCategoryId(Long categoryId) {
 		List<Product> products = productRepository.getProductByCategory(categoryId);
-		return products.stream().map(ProductDTO::convert).collect(Collectors.toList());
+		return products.stream().map(DTOConverter::convert).collect(Collectors.toList());
 	}
 
 	public ProductDTO findByProductIdentifier(String productIdentifier) {
 		Product product = productRepository.findByProductIdentifier(productIdentifier);
 		if (product != null) {
-			return ProductDTO.convert(product);
+			return DTOConverter.convert(product);
 		}
 		return null;
 	}
@@ -45,7 +46,7 @@ public class ProductService {
 			return null;
 		}
 		Product product = productRepository.save(Product.convert(productDTO));
-		return ProductDTO.convert(product);
+		return DTOConverter.convert(product);
 	}
 
 	public ProductDTO delete(long ProductId) {

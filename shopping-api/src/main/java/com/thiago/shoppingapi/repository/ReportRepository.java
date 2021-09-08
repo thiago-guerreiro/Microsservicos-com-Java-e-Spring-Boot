@@ -3,8 +3,8 @@ package com.thiago.shoppingapi.repository;
 import java.util.Date;
 import java.util.List;
 
-import com.thiago.shoppingapi.dto.ShopReportDTO;
 import com.thiago.shoppingapi.model.Shop;
+import com.thiago.shoppingclient.dto.ShopReportDTO;
 
 public interface ReportRepository {
 

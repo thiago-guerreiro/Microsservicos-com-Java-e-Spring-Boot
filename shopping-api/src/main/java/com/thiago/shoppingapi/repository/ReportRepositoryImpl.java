@@ -8,8 +8,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import com.thiago.shoppingapi.dto.ShopReportDTO;
 import com.thiago.shoppingapi.model.Shop;
+import com.thiago.shoppingclient.dto.ShopReportDTO;
 
 public class ReportRepositoryImpl implements ReportRepository {
 

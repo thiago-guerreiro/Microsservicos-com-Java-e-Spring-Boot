@@ -2,7 +2,7 @@ package com.thiago.shoppingapi.model;
 
 import javax.persistence.Embeddable;
 
-import com.thiago.shoppingapi.dto.ItemDTO;
+import com.thiago.shoppingclient.dto.ItemDTO;
 
 @Embeddable
 public class Item {
