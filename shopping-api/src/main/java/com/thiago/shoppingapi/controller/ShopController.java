@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.thiago.shoppingapi.dto.ShopDTO;
-import com.thiago.shoppingapi.dto.ShopReportDTO;
 import com.thiago.shoppingapi.service.ShopService;
+import com.thiago.shoppingclient.dto.ShopDTO;
+import com.thiago.shoppingclient.dto.ShopReportDTO;
 
 @RestController
 public class ShopController {
