@@ -15,6 +15,7 @@ import com.thiago.shoppingclient.dto.ItemDTO;
 import com.thiago.shoppingclient.dto.ProductDTO;
 import com.thiago.shoppingclient.dto.ShopDTO;
 import com.thiago.shoppingclient.dto.ShopReportDTO;
+import com.thiago.shoppingclient.exception.ProductNotFoundException;
 
 @Service
 public class ShopService {
@@ -48,7 +49,7 @@ public class ShopService {
 		if (shop.isPresent()) {
 			return DTOConverter.convert(shop.get());
 		}
-		return null;
+		throw new ProductNotFoundException();
 	}
 
 	public ShopDTO save(ShopDTO shopDTO) {

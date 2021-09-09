@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.thiago.shoppingclient.dto.UserDTO;
+import com.thiago.shoppingclient.exception.UserNotFoundException;
 import com.thiago.userapi.converter.DTOConverter;
 import com.thiago.userapi.model.User;
 import com.thiago.userapi.repository.UserRepository;
@@ -28,7 +29,7 @@ public class UserService {
 		if (usuario.isPresent()) {
 			return DTOConverter.convert(usuario.get());
 		}
-		return null;
+		throw new UserNotFoundException();
 	}
 
 	public UserDTO save(UserDTO userDTO) {
@@ -36,12 +37,12 @@ public class UserService {
 		return DTOConverter.convert(user);
 	}
 
-	public UserDTO delete(long userId) {
+	public UserDTO delete(long userId) throws UserNotFoundException {
 		Optional<User> user = userRepository.findById(userId);
 		if (user.isPresent()) {
 			userRepository.delete(user.get());
 		}
-		return null;
+		throw new UserNotFoundException();
 	}
 
 	public UserDTO findByCpf(String cpf) {
@@ -49,7 +50,7 @@ public class UserService {
 		if (user != null) {
 			return DTOConverter.convert(user);
 		}
-		return null;
+		throw new UserNotFoundException();
 	}
 
 	public List<UserDTO> queryByName(String name) {

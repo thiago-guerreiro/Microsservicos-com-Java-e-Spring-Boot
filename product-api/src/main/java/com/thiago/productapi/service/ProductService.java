@@ -12,6 +12,8 @@ import com.thiago.productapi.model.Product;
 import com.thiago.productapi.repository.CategoryRepository;
 import com.thiago.productapi.repository.ProductRepository;
 import com.thiago.shoppingclient.dto.ProductDTO;
+import com.thiago.shoppingclient.exception.CategoryNotFoundException;
+import com.thiago.shoppingclient.exception.ProductNotFoundException;
 
 @Service
 public class ProductService {
@@ -37,24 +39,24 @@ public class ProductService {
 		if (product != null) {
 			return DTOConverter.convert(product);
 		}
-		return null;
+		throw new ProductNotFoundException();
 	}
 
 	public ProductDTO save(ProductDTO productDTO) {
 		Boolean existsCategory = categoryRepository.existsById(productDTO.getCategory().getId());
 		if (!existsCategory) {
-			return null;
+			throw new CategoryNotFoundException();
 		}
 		Product product = productRepository.save(Product.convert(productDTO));
 		return DTOConverter.convert(product);
 	}
 
-	public ProductDTO delete(long ProductId) {
+	public ProductDTO delete(long ProductId) throws ProductNotFoundException {
 		Optional<Product> Product = productRepository.findById(ProductId);
 		if (Product.isPresent()) {
 			productRepository.delete(Product.get());
 		}
-		return null;
+		throw new ProductNotFoundException();
 	}
 
 }
