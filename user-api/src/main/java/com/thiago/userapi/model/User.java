@@ -19,6 +19,7 @@ public class User {
 	private String nome;
 	private String cpf;
 	private String endereco;
+	private String key;
 	private String email;
 	private String telefone;
 	private Date dataCadastro;
@@ -55,6 +56,14 @@ public class User {
 		this.endereco = endereco;
 	}
 
+	public String getKey() {
+		return key;
+	}
+
+	public void setKey(String key) {
+		this.key = key;
+	}
+
 	public String getEmail() {
 		return email;
 	}
@@ -83,6 +92,7 @@ public class User {
 		User user = new User();
 		user.setNome(userDTO.getNome());
 		user.setEndereco(userDTO.getEndereco());
+		user.setKey(userDTO.getKey());
 		user.setCpf(userDTO.getCpf());
 		user.setEmail(userDTO.getEmail());
 		user.setTelefone(userDTO.getTelefone());

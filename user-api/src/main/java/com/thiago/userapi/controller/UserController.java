@@ -37,8 +37,10 @@ public class UserController {
 	}
 
 	@GetMapping("/user/cpf/{cpf}")
-	public UserDTO getUsersFiltro(@PathVariable String cpf) {
-		return userService.findByCpf(cpf);
+	public UserDTO findByCpf(
+					@RequestParam(name = "key", required = true) String key,  
+					@PathVariable String cpf) {
+		return userService.findByCpf(cpf, key);
 	}
 
 	@DeleteMapping("/user/{id}")

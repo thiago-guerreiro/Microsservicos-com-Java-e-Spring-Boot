@@ -15,6 +15,7 @@ import com.thiago.shoppingclient.dto.ItemDTO;
 import com.thiago.shoppingclient.dto.ProductDTO;
 import com.thiago.shoppingclient.dto.ShopDTO;
 import com.thiago.shoppingclient.dto.ShopReportDTO;
+import com.thiago.shoppingclient.dto.UserDTO;
 import com.thiago.shoppingclient.exception.ProductNotFoundException;
 
 @Service
@@ -52,20 +53,16 @@ public class ShopService {
 		throw new ProductNotFoundException();
 	}
 
-	public ShopDTO save(ShopDTO shopDTO) {
-		if (userService.getUserByCpf(shopDTO.getUserIdentifier()) == null) {
-			return null;
-		}
-		if (!validateProducts(shopDTO.getItems())) {
-			return null;
-		}
+	public ShopDTO save(ShopDTO shopDTO, String key) {		
+		UserDTO userDTO = userService.getUserByCpf(shopDTO.getUserIdentifier(), key);
+		validateProducts(shopDTO.getItems());
 		shopDTO.setTotal(shopDTO.getItems()
-				.stream()
-				.map(x -> x.getPrice())
-				.reduce((float) 0, Float::sum));
+								.stream()
+								.map(x -> x.getPrice())
+								.reduce((float) 0, Float::sum));
 		Shop shop = Shop.convert(shopDTO);
 		shop.setDate(new Date());
-
+		
 		shop = shopRepository.save(shop);
 		return DTOConverter.convert(shop);
 	}
